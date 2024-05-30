@@ -1,0 +1,17 @@
+# macOS
+Icon?
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__
+
+# JavaScript
+node_modules
+
+# Emacs
+*~
+\#*\#
+
+data
+programs_old
