@@ -102,7 +102,8 @@ n_epochs = 100
     # エポック（epoch）とは、トレーニングデータセット全体を1回処理すること
 batch_size = 10
     # バッチサイズを10に設定
-    # ミニバッチ勾配降下法では、トレーニングデータ全体を一度に処理するのではなく、ミニバッチごとにデータを分割して処理する
+    # ミニバッチ勾配降下法では、トレーニングデータ全体を一度に処理するのではなく、
+    # ミニバッチごとにデータを分割して処理する
     # ミニバッチ
         # 学習に用いるデータをいくつかに分割して得られるデータのまとまり
     # バッチサイズ
@@ -113,7 +114,8 @@ batch_start = torch.arange(0, len(X_train), batch_size)
     # torch.arange(0, len(X_train), batch_size)
         # 0から len(X_train) までbatch_size間隔で変化する整数のtorch配列を作成
     # 後にこの配列が指定する整数を引数として、プログレスバーの表示や訓練データの分割を行う
-    # これによってバッチサイズ全体に対する進展やバッチサイズ（batch_size）ごとに分割された訓練データが得られる
+    # これによってバッチサイズ全体に対する進展やバッチサイズ（batch_size）
+    # ごとに分割された訓練データが得られる
 
 # 最良のモデルを保持する
 best_mse = np.inf
@@ -162,8 +164,10 @@ for epoch in range(n_epochs):
             # プログレスバーが表示される。
         for start in bar:
             # barはプログレスバーであり、各イテレーションで新しいミニバッチの開始位置（start）を返す
-            # プログレスバーはbatch_startに対して作成されており、この引数はバッチサイズごとに数字が振られているので
-            # プログレスバーからイテレータによってデータを取り出せば、そのデータはミニバッチの開始位置を表すことになる
+            # プログレスバーはbatch_startに対して作成されており、
+            # この引数はバッチサイズごとに数字が振られているので
+            # プログレスバーからイテレータによってデータを取り出せば、
+            # そのデータはミニバッチの開始位置を表すことになる
             # イテレータ
                 # リストや辞書など、データの集合に対して順にアクセスするオブジェクト
                 # 属性として現在参照しているデータ、メソッドとして次のデータを参照する機能を持つのでオブジェクト
@@ -222,29 +226,6 @@ for epoch in range(n_epochs):
         best_mse = mse
             # best_mseをmseに更新
 
-# テストデータからランダムなサンプルを選択し、その予測値と実際の値を比較
-import random
-sample_index = random.randint(0, len(X_test) - 1)  # ランダムなインデックスを選択
-sample_features = X_test[sample_index]
-sample_actual = y_test[sample_index]
-sample_predicted = y_pred[sample_index]
-
-# 詳細表示
-features = { 0: 'MedInc', 
-             1: 'HouseAge',
-             2: 'AveRooms',
-             3: 'AveBedrms',
-             4: 'Population',
-             5: 'AveOccup',
-             6: 'Latitude',
-             7: 'Longitude',
-            }
-
-for i in range(8):
-    print(features[i],": ", sample_features[i].item())
-print("Predicted MedHouseVal:", sample_predicted.item())
-print("Actual MedHouseVal:", sample_actual.item())
-
 # 数値の出力
 print("MSE: %.2f" % best_mse)
     # best_mseを出力
@@ -256,6 +237,8 @@ print("MSE: %.2f" % best_mse)
     # ここでは、%.2fの所を浮動小数点数であるbest_mseが置き換えた形で出力される
     # それも、小数点以下の桁数を2桁に指定される。
 print("RMSE: %.2f" % np.sqrt(best_mse))
+    # np.sqrt()
+        # 正の平方根を返す
     # best_mseの正の平方根を出力
 
 # グラフ化

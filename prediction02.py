@@ -226,7 +226,7 @@ for epoch in range(n_epochs):
         
         best_mse = mse
             # best_mseをmseに更新
-
+        
 # 数値の出力
 print("MSE: %.2f" % best_mse)
     # best_mseを出力
@@ -250,42 +250,3 @@ plt.ylabel('mean square error')
 plt.show()
     # Matplotlibで作成した図を表示する関数
     # グラフやチャートを画面上に描画する
-
-"""
-# 以下、prediction01.py同様、使用しないので削除（2024.5.16）
-        best_weights = copy.deepcopy(model.state_dict())
-            # best_weightsを更新
-            # model.state_dict()
-                # PyTorchモデルの状態を表す辞書で、重みやバイアスなどの学習可能なパラメータを格納
-# これに伴い、import copyも削除
-                
-# 最良の性能を達成した時点でのモデルの重みを復元
-model.load_state_dict(best_weights)
-    # load_state_dict
-        # state_dictという辞書から特定のモデルのパラメータ（重みとバイアスなど）をロードする
-    # state_dict
-        # キーはモデル内の各パラメータの名前
-        # 値はそれぞれのパラメータの重みやバイアスなどのテンソル（多次元配列）である辞書
-
-
-# 以下、prediction01には実装されていないのでコメント化（2024.4.1）
-# 訓練済みのモデルで推論（予測）を行い、結果を表示する
-model.eval()
-    # モデルを評価モードに切り替え
-with torch.no_grad():
-    # 勾配の計算を止める
-    # モデルの評価ではパラメータの更新が必要ないため
-    for i in range(5):
-        X_sample = X_test_raw[i: i+1]
-            # バッチ次元を保持するようにX_sampleをとる
-            # バッチ次元を保持とは、サンプル数（バッチ数）を変えても入力データの形状を保つということ
-        X_sample = scaler.transform(X_sample)
-            # 取り出したサンプルを標準化
-        X_sample = torch.tensor(X_sample, dtype=torch.float32)
-            # X_sampleをPyTorchのテンソルに変換
-        y_pred = model(X_sample)
-            # モデルを使用してサンプルを予測
-        print(f"{X_test_raw[i]} -> {y_pred[0].numpy()} (expected {y_test[i].numpy()})")
-            # X_test_raw[i]：元の特徴量、y_pred[0].numpy()：予測結果、および
-            # (expected {y_test[i].numpy()})：期待される結果（正解ラベル）を出力
-"""
